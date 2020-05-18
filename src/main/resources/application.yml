@@ -1,0 +1,19 @@
+auth-server: http://localhost:8081
+
+server:
+  port: 8082
+  servlet:
+    session:
+      cookie:
+        name: client1
+
+security:
+  oauth2:
+    client:
+      client-secret: 123
+      client-id: cetcxl
+      user-authorization-uri: ${auth-server}/oauth/authorize
+      access-token-uri: ${auth-server}/oauth/token
+    resource:
+      user-info-uri: ${auth-server}/user
+
