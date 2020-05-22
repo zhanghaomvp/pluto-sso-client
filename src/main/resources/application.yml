@@ -1,4 +1,4 @@
-auth-server: http://localhost:8081
+auth-server: http://localhost:8081/sso
 
 server:
   port: 8082
@@ -6,14 +6,23 @@ server:
     session:
       cookie:
         name: client1
+    context-path: /clent1
 
 security:
   oauth2:
     client:
       client-secret: 123
-      client-id: cetcxl
+      client-id: cetcxl-client1
       user-authorization-uri: ${auth-server}/oauth/authorize
       access-token-uri: ${auth-server}/oauth/token
+      registered-redirect-uri: ${baseUrl}/hello
     resource:
       user-info-uri: ${auth-server}/user
 
+spring:
+  redis:
+    host: 127.0.0.1
+    database: 1
+
+  session:
+    store-type: redis
